@@ -1,0 +1,703 @@
+{
+  "entrypoints": [
+    "main"
+  ],
+  "origins": {
+    "2237": [
+      2237
+    ],
+    "5533": [
+      1869,
+      3249,
+      4813,
+      6061,
+      7643,
+      8401,
+      8747,
+      5533
+    ],
+    "8747": [
+      1869,
+      3249,
+      4813,
+      5533,
+      7643,
+      8747
+    ],
+    "17896441": [
+      1869,
+      5533,
+      8401
+    ],
+    "59362658": [
+      9325
+    ],
+    "75507265": [
+      312
+    ],
+    "main": [
+      1869,
+      5354,
+      8792
+    ],
+    "runtime~main": [
+      1869,
+      8792,
+      5354
+    ],
+    "01a85c17": [
+      1869,
+      8209
+    ],
+    "0e384e19": [
+      3976
+    ],
+    "14eb3368": [
+      1869,
+      6969
+    ],
+    "18c41134": [
+      9262
+    ],
+    "1df93b7f": [
+      1869,
+      4583
+    ],
+    "1e4232ab": [
+      1953
+    ],
+    "1f391b9e": [
+      1869,
+      5533,
+      6061
+    ],
+    "2f9bdd85": [
+      7415
+    ],
+    "393be207": [
+      4134
+    ],
+    "533a09ca": [
+      3098
+    ],
+    "5374f9e7": [
+      8105
+    ],
+    "5c868d36": [
+      1974
+    ],
+    "5d1f5eea": [
+      1881
+    ],
+    "5e95c892": [
+      9647
+    ],
+    "6875c492": [
+      1869,
+      5533,
+      8747,
+      4813
+    ],
+    "6ab710b3": [
+      1011
+    ],
+    "6b49a205": [
+      7382
+    ],
+    "73664a40": [
+      1972
+    ],
+    "7661071f": [
+      8737
+    ],
+    "814f3328": [
+      7472
+    ],
+    "822bd8ab": [
+      2748
+    ],
+    "844c9144": [
+      1102
+    ],
+    "86994b57": [
+      6909
+    ],
+    "8717b14a": [
+      3694
+    ],
+    "87d40227": [
+      4683
+    ],
+    "925b3f96": [
+      8609
+    ],
+    "935f2afb": [
+      8581
+    ],
+    "9e4087bc": [
+      2711
+    ],
+    "a1a56df9": [
+      7162
+    ],
+    "a6aa9e1f": [
+      1869,
+      5533,
+      8747,
+      7643
+    ],
+    "a7bd4aaa": [
+      7098
+    ],
+    "a94703ab": [
+      1869,
+      9048
+    ],
+    "adf8b374": [
+      730
+    ],
+    "bcd89bf2": [
+      7523
+    ],
+    "be9ea5c7": [
+      3290
+    ],
+    "c429c1ea": [
+      7491
+    ],
+    "c63ca370": [
+      7051
+    ],
+    "ccc49370": [
+      1869,
+      5533,
+      8747,
+      3249
+    ],
+    "d9f32620": [
+      5557
+    ],
+    "dff1c289": [
+      1724
+    ],
+    "e0c1edac": [
+      1155
+    ],
+    "e273c56f": [
+      9328
+    ],
+    "e44a2883": [
+      4736
+    ],
+    "f4f34a3a": [
+      3637
+    ],
+    "f55d3e7a": [
+      8863
+    ],
+    "styles": [
+      3249,
+      4583,
+      4813,
+      5354,
+      5533,
+      6061,
+      6969,
+      7643,
+      8209,
+      8401,
+      8747,
+      8792,
+      9048,
+      1869
+    ]
+  },
+  "assets": {
+    "312": {
+      "js": [
+        {
+          "file": "assets/js/75507265.6525dae3.js",
+          "hash": "b2609563d584955d",
+          "publicPath": "/wiki.me/assets/js/75507265.6525dae3.js"
+        }
+      ]
+    },
+    "730": {
+      "js": [
+        {
+          "file": "assets/js/adf8b374.02e44361.js",
+          "hash": "99a940c5a1ced643",
+          "publicPath": "/wiki.me/assets/js/adf8b374.02e44361.js"
+        }
+      ]
+    },
+    "1011": {
+      "js": [
+        {
+          "file": "assets/js/6ab710b3.31e93e4f.js",
+          "hash": "fe8cb616e891ea05",
+          "publicPath": "/wiki.me/assets/js/6ab710b3.31e93e4f.js"
+        }
+      ]
+    },
+    "1102": {
+      "js": [
+        {
+          "file": "assets/js/844c9144.ad913270.js",
+          "hash": "3cef83a130d9d7c6",
+          "publicPath": "/wiki.me/assets/js/844c9144.ad913270.js"
+        }
+      ]
+    },
+    "1155": {
+      "js": [
+        {
+          "file": "assets/js/e0c1edac.deafad60.js",
+          "hash": "dc92f24e1c969649",
+          "publicPath": "/wiki.me/assets/js/e0c1edac.deafad60.js"
+        }
+      ]
+    },
+    "1724": {
+      "js": [
+        {
+          "file": "assets/js/dff1c289.6d655c14.js",
+          "hash": "68806b0459f6c8f9",
+          "publicPath": "/wiki.me/assets/js/dff1c289.6d655c14.js"
+        }
+      ]
+    },
+    "1869": {
+      "css": [
+        {
+          "file": "assets/css/styles.07386aa2.css",
+          "hash": "c78d1e9d4917cbdc",
+          "publicPath": "/wiki.me/assets/css/styles.07386aa2.css"
+        }
+      ]
+    },
+    "1881": {
+      "js": [
+        {
+          "file": "assets/js/5d1f5eea.e0f7d023.js",
+          "hash": "e9d9ff2f8bc08f8b",
+          "publicPath": "/wiki.me/assets/js/5d1f5eea.e0f7d023.js"
+        }
+      ]
+    },
+    "1953": {
+      "js": [
+        {
+          "file": "assets/js/1e4232ab.52826355.js",
+          "hash": "219d4852e6fcbfe2",
+          "publicPath": "/wiki.me/assets/js/1e4232ab.52826355.js"
+        }
+      ]
+    },
+    "1972": {
+      "js": [
+        {
+          "file": "assets/js/73664a40.d9843cd9.js",
+          "hash": "9f8086becffa99fb",
+          "publicPath": "/wiki.me/assets/js/73664a40.d9843cd9.js"
+        }
+      ]
+    },
+    "1974": {
+      "js": [
+        {
+          "file": "assets/js/5c868d36.b5fa2b48.js",
+          "hash": "846c89c83ce89c59",
+          "publicPath": "/wiki.me/assets/js/5c868d36.b5fa2b48.js"
+        }
+      ]
+    },
+    "2237": {
+      "js": [
+        {
+          "file": "assets/js/2237.c1c8e5b8.js",
+          "hash": "230aa381732989ae",
+          "publicPath": "/wiki.me/assets/js/2237.c1c8e5b8.js"
+        }
+      ]
+    },
+    "2711": {
+      "js": [
+        {
+          "file": "assets/js/9e4087bc.a6f82060.js",
+          "hash": "8b4dab4bf8ceff51",
+          "publicPath": "/wiki.me/assets/js/9e4087bc.a6f82060.js"
+        }
+      ]
+    },
+    "2748": {
+      "js": [
+        {
+          "file": "assets/js/822bd8ab.5371347e.js",
+          "hash": "d51e406010e5eec0",
+          "publicPath": "/wiki.me/assets/js/822bd8ab.5371347e.js"
+        }
+      ]
+    },
+    "3098": {
+      "js": [
+        {
+          "file": "assets/js/533a09ca.e3dc4a3d.js",
+          "hash": "7f6a270e9c71304c",
+          "publicPath": "/wiki.me/assets/js/533a09ca.e3dc4a3d.js"
+        }
+      ]
+    },
+    "3249": {
+      "js": [
+        {
+          "file": "assets/js/ccc49370.3de31417.js",
+          "hash": "76cacdf4006c7084",
+          "publicPath": "/wiki.me/assets/js/ccc49370.3de31417.js"
+        }
+      ]
+    },
+    "3290": {
+      "js": [
+        {
+          "file": "assets/js/be9ea5c7.c36faabc.js",
+          "hash": "9a94292902110285",
+          "publicPath": "/wiki.me/assets/js/be9ea5c7.c36faabc.js"
+        }
+      ]
+    },
+    "3637": {
+      "js": [
+        {
+          "file": "assets/js/f4f34a3a.818cc12a.js",
+          "hash": "1dfca2d2eef08efa",
+          "publicPath": "/wiki.me/assets/js/f4f34a3a.818cc12a.js"
+        }
+      ]
+    },
+    "3694": {
+      "js": [
+        {
+          "file": "assets/js/8717b14a.131c2f36.js",
+          "hash": "28418c8940e4ebf5",
+          "publicPath": "/wiki.me/assets/js/8717b14a.131c2f36.js"
+        }
+      ]
+    },
+    "3976": {
+      "js": [
+        {
+          "file": "assets/js/0e384e19.02c7cf91.js",
+          "hash": "94daa68a2155ac33",
+          "publicPath": "/wiki.me/assets/js/0e384e19.02c7cf91.js"
+        }
+      ]
+    },
+    "4134": {
+      "js": [
+        {
+          "file": "assets/js/393be207.ef71d7e9.js",
+          "hash": "67c5b7cfddcaea78",
+          "publicPath": "/wiki.me/assets/js/393be207.ef71d7e9.js"
+        }
+      ]
+    },
+    "4583": {
+      "js": [
+        {
+          "file": "assets/js/1df93b7f.3bf12e63.js",
+          "hash": "20a6629d1f545b99",
+          "publicPath": "/wiki.me/assets/js/1df93b7f.3bf12e63.js"
+        }
+      ]
+    },
+    "4683": {
+      "js": [
+        {
+          "file": "assets/js/87d40227.3d7abea0.js",
+          "hash": "b262fcaffeb30610",
+          "publicPath": "/wiki.me/assets/js/87d40227.3d7abea0.js"
+        }
+      ]
+    },
+    "4736": {
+      "js": [
+        {
+          "file": "assets/js/e44a2883.b82467da.js",
+          "hash": "f4cc8b7dbbc84d11",
+          "publicPath": "/wiki.me/assets/js/e44a2883.b82467da.js"
+        }
+      ]
+    },
+    "4813": {
+      "js": [
+        {
+          "file": "assets/js/6875c492.e8696ba0.js",
+          "hash": "e5f17471eb085468",
+          "publicPath": "/wiki.me/assets/js/6875c492.e8696ba0.js"
+        }
+      ]
+    },
+    "5354": {
+      "js": [
+        {
+          "file": "assets/js/runtime~main.baff8e49.js",
+          "hash": "9dd6841a5efda1bd",
+          "publicPath": "/wiki.me/assets/js/runtime~main.baff8e49.js"
+        }
+      ]
+    },
+    "5533": {
+      "js": [
+        {
+          "file": "assets/js/5533.8fb7da6f.js",
+          "hash": "dc990ea07cf5739c",
+          "publicPath": "/wiki.me/assets/js/5533.8fb7da6f.js"
+        }
+      ]
+    },
+    "5557": {
+      "js": [
+        {
+          "file": "assets/js/d9f32620.8820b151.js",
+          "hash": "8fe57a2b5cf8f161",
+          "publicPath": "/wiki.me/assets/js/d9f32620.8820b151.js"
+        }
+      ]
+    },
+    "6061": {
+      "js": [
+        {
+          "file": "assets/js/1f391b9e.b4c83a43.js",
+          "hash": "9473c67f46ffeccd",
+          "publicPath": "/wiki.me/assets/js/1f391b9e.b4c83a43.js"
+        }
+      ]
+    },
+    "6909": {
+      "js": [
+        {
+          "file": "assets/js/86994b57.0e6ba226.js",
+          "hash": "996c08fc5c5385ec",
+          "publicPath": "/wiki.me/assets/js/86994b57.0e6ba226.js"
+        }
+      ]
+    },
+    "6969": {
+      "js": [
+        {
+          "file": "assets/js/14eb3368.22776b6d.js",
+          "hash": "81e028a38560448b",
+          "publicPath": "/wiki.me/assets/js/14eb3368.22776b6d.js"
+        }
+      ]
+    },
+    "7051": {
+      "js": [
+        {
+          "file": "assets/js/c63ca370.6931036c.js",
+          "hash": "b208d80e6905bef0",
+          "publicPath": "/wiki.me/assets/js/c63ca370.6931036c.js"
+        }
+      ]
+    },
+    "7098": {
+      "js": [
+        {
+          "file": "assets/js/a7bd4aaa.23497166.js",
+          "hash": "c54a0cd916778335",
+          "publicPath": "/wiki.me/assets/js/a7bd4aaa.23497166.js"
+        }
+      ]
+    },
+    "7162": {
+      "js": [
+        {
+          "file": "assets/js/a1a56df9.ee8c3c1f.js",
+          "hash": "10352e981be624bf",
+          "publicPath": "/wiki.me/assets/js/a1a56df9.ee8c3c1f.js"
+        }
+      ]
+    },
+    "7382": {
+      "js": [
+        {
+          "file": "assets/js/6b49a205.60136a7d.js",
+          "hash": "c967202574e76b90",
+          "publicPath": "/wiki.me/assets/js/6b49a205.60136a7d.js"
+        }
+      ]
+    },
+    "7415": {
+      "js": [
+        {
+          "file": "assets/js/2f9bdd85.663a2e87.js",
+          "hash": "26be2f1d94c1600b",
+          "publicPath": "/wiki.me/assets/js/2f9bdd85.663a2e87.js"
+        }
+      ]
+    },
+    "7472": {
+      "js": [
+        {
+          "file": "assets/js/814f3328.79adacb8.js",
+          "hash": "c6a67f7dbbc050fb",
+          "publicPath": "/wiki.me/assets/js/814f3328.79adacb8.js"
+        }
+      ]
+    },
+    "7491": {
+      "js": [
+        {
+          "file": "assets/js/c429c1ea.1e32d2aa.js",
+          "hash": "1268e37b985fdbf3",
+          "publicPath": "/wiki.me/assets/js/c429c1ea.1e32d2aa.js"
+        }
+      ]
+    },
+    "7523": {
+      "js": [
+        {
+          "file": "assets/js/bcd89bf2.2a272b3e.js",
+          "hash": "f5282e14f4aa8642",
+          "publicPath": "/wiki.me/assets/js/bcd89bf2.2a272b3e.js"
+        }
+      ]
+    },
+    "7643": {
+      "js": [
+        {
+          "file": "assets/js/a6aa9e1f.3b3762c8.js",
+          "hash": "e87bd5349bec348b",
+          "publicPath": "/wiki.me/assets/js/a6aa9e1f.3b3762c8.js"
+        }
+      ]
+    },
+    "8105": {
+      "js": [
+        {
+          "file": "assets/js/5374f9e7.8b3a8a36.js",
+          "hash": "697bad9657c889f8",
+          "publicPath": "/wiki.me/assets/js/5374f9e7.8b3a8a36.js"
+        }
+      ]
+    },
+    "8209": {
+      "js": [
+        {
+          "file": "assets/js/01a85c17.c928ee9d.js",
+          "hash": "88fcf9197b2fa621",
+          "publicPath": "/wiki.me/assets/js/01a85c17.c928ee9d.js"
+        }
+      ]
+    },
+    "8401": {
+      "js": [
+        {
+          "file": "assets/js/17896441.9eb0badd.js",
+          "hash": "d7731b21a7ca856a",
+          "publicPath": "/wiki.me/assets/js/17896441.9eb0badd.js"
+        }
+      ]
+    },
+    "8581": {
+      "js": [
+        {
+          "file": "assets/js/935f2afb.bdffbc8a.js",
+          "hash": "4dd9e8acc96350e2",
+          "publicPath": "/wiki.me/assets/js/935f2afb.bdffbc8a.js"
+        }
+      ]
+    },
+    "8609": {
+      "js": [
+        {
+          "file": "assets/js/925b3f96.8993595b.js",
+          "hash": "11552e0f8c03e1a5",
+          "publicPath": "/wiki.me/assets/js/925b3f96.8993595b.js"
+        }
+      ]
+    },
+    "8737": {
+      "js": [
+        {
+          "file": "assets/js/7661071f.6ac0ffa5.js",
+          "hash": "a0cc2033bd955410",
+          "publicPath": "/wiki.me/assets/js/7661071f.6ac0ffa5.js"
+        }
+      ]
+    },
+    "8747": {
+      "js": [
+        {
+          "file": "assets/js/8747.1efd6a6a.js",
+          "hash": "23aecc89cd947cb4",
+          "publicPath": "/wiki.me/assets/js/8747.1efd6a6a.js"
+        }
+      ]
+    },
+    "8792": {
+      "js": [
+        {
+          "file": "assets/js/main.a28b3a49.js",
+          "hash": "7a5647f3d8a9dc5c",
+          "publicPath": "/wiki.me/assets/js/main.a28b3a49.js"
+        }
+      ]
+    },
+    "8863": {
+      "js": [
+        {
+          "file": "assets/js/f55d3e7a.e9951789.js",
+          "hash": "f7703332be710506",
+          "publicPath": "/wiki.me/assets/js/f55d3e7a.e9951789.js"
+        }
+      ]
+    },
+    "9048": {
+      "js": [
+        {
+          "file": "assets/js/a94703ab.50cd3372.js",
+          "hash": "30b24117ddebcad2",
+          "publicPath": "/wiki.me/assets/js/a94703ab.50cd3372.js"
+        }
+      ]
+    },
+    "9262": {
+      "js": [
+        {
+          "file": "assets/js/18c41134.53fddedd.js",
+          "hash": "fe24cd0cd739a3b7",
+          "publicPath": "/wiki.me/assets/js/18c41134.53fddedd.js"
+        }
+      ]
+    },
+    "9325": {
+      "js": [
+        {
+          "file": "assets/js/59362658.eb244a0f.js",
+          "hash": "2664d8f7ad1c98e1",
+          "publicPath": "/wiki.me/assets/js/59362658.eb244a0f.js"
+        }
+      ]
+    },
+    "9328": {
+      "js": [
+        {
+          "file": "assets/js/e273c56f.f1ad72df.js",
+          "hash": "f7e3dfa6a929ef4c",
+          "publicPath": "/wiki.me/assets/js/e273c56f.f1ad72df.js"
+        }
+      ]
+    },
+    "9647": {
+      "js": [
+        {
+          "file": "assets/js/5e95c892.ace733b3.js",
+          "hash": "fe8d7a30b03e923d",
+          "publicPath": "/wiki.me/assets/js/5e95c892.ace733b3.js"
+        }
+      ]
+    }
+  }
+}
