@@ -5,6 +5,7 @@ import starlight from "@astrojs/starlight";
 export default defineConfig({
   site: "https://marweumr.github.io",
   base: "/wiki.me",
+  outDir: "public",
   integrations: [
     starlight({
       title: "My Docs",
