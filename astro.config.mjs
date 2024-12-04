@@ -3,8 +3,7 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://marweumr.github.io",
-  base: "/wiki.me",
+  site: "https://marweumr.github.io/wiki.me",
   outDir: "public",
   integrations: [
     starlight({
