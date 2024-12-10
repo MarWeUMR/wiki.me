@@ -4,8 +4,8 @@ import starlight from "@astrojs/starlight";
 const isProd = process.env.NODE_ENV === "production";
 // https://astro.build/config
 export default defineConfig({
-  site: isProd ? "https://marweumr.github.io" : "http://localhost:4321",
-  base: isProd ? "/wiki.me" : "/",
+  site: isProd ? "https://marweumr.github.io/wiki.me" : "http://localhost:4321",
+  base: isProd ? "/" : "/",
   // site: "https://marweumr.github.io",
   // base: "/wiki.me",
   integrations: [
