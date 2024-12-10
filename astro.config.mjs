@@ -1,10 +1,13 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
+const isProd = process.env.NODE_ENV === "production";
 // https://astro.build/config
 export default defineConfig({
-  site: "https://marweumr.github.io",
-  base: "/wiki.me",
+  site: isProd ? "https://marweumr.github.io" : "http://localhost:4321",
+  base: isProd ? "/wiki.me" : "/",
+  // site: "https://marweumr.github.io",
+  // base: "/wiki.me",
   integrations: [
     starlight({
       title: "My Docs",
@@ -15,6 +18,15 @@ export default defineConfig({
         {
           label: "Guides",
           items: [
+            {
+              label: "Ansible",
+              items: [
+                {
+                  label: "Include vs Import",
+                  slug: "guides/ansible/include_vs_import",
+                },
+              ],
+            },
             {
               label: "Git",
               items: [
