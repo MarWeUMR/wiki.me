@@ -32,6 +32,10 @@ export default defineConfig({
               items: [
                 { label: "Intro", slug: "guides/git/intro" },
                 {
+                  label: "Commit Author",
+                  slug: "guides/git/changing_commit_author",
+                },
+                {
                   label: "Bare Repo with Worktrees",
                   slug: "guides/git/worktrees",
                 },
