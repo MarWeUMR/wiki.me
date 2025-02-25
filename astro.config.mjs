@@ -19,39 +19,7 @@ export default defineConfig({
       sidebar: [
         {
           label: "Guides",
-          items: [
-            {
-              label: "Ansible",
-              items: [
-                {
-                  label: "Include vs Import",
-                  slug: "guides/ansible/include_vs_import",
-                },
-              ],
-            },
-            {
-              label: "Git",
-              items: [
-                { label: "Intro", slug: "guides/git/intro" },
-                {
-                  label: "Commit Author",
-                  slug: "guides/git/changing_commit_author",
-                },
-                {
-                  label: "Bare Repo with Worktrees",
-                  slug: "guides/git/worktrees",
-                },
-                {
-                  label: "Ignore without using .gitignore",
-                  slug: "guides/git/ignoring",
-                },
-              ],
-            },
-            {
-              label: "Nvim",
-              items: [],
-            },
-          ],
+          autogenerate: { directory: "guides" },
         },
         {
           label: "Reference",
