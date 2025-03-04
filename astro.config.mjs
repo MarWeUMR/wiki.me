@@ -12,7 +12,7 @@ export default defineConfig({
   // base: "/wiki.me",
   integrations: [
     starlight({
-      title: "My Docs",
+      title: "All the Things I SHOULD Know",
       social: {
         github: "https://github.com/withastro/starlight",
       },
