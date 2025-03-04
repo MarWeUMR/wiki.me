@@ -15,7 +15,7 @@ There are two types of `ARG`:
 
 Here is an example of how to use both types:
 
-```Dockerfile
+```dockerfile
 
 # Build-time ARG
 ARG BUILD_VERSION=latest
