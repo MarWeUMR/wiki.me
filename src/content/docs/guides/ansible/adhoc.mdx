@@ -1,0 +1,18 @@
+---
+title: Random Adhoc Commands
+---
+
+This is a collection of random adhoc commands that I have found useful.
+
+## Change DNS Server
+
+This was used on a set of Almalinux servers to change the DNS server to a local DNS server, since the packer/terraform setup did not set the DNS server correctly on all nodes.
+
+```bash
+ANSIBLE_SSH_ARGS="-F ../terraform_ddp/ssh.cfg" \
+ansible all -i ../terraform_ddp/inventory.yml -b -m shell -a '\
+UUID=$(nmcli -t -f NAME,UUID,DEVICE,ACTIVE c show --active | grep ens | cut -d: -f2) && \
+nmcli con modify "$UUID" ipv4.dns "10.25.117.10" ipv4.ignore-auto-dns yes && \
+nmcli con up "$UUID"'
+
+```
