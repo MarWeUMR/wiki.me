@@ -11,7 +11,11 @@ This was used on a set of Almalinux servers to change the DNS server to a local 
 ```bash
 export ANSIBLE_SSH_ARGS="-F ../terraform_ddp/ssh.cfg"
 ansible all -i ../terraform_ddp/inventory.yml -b -m shell -a ' \
-  UUID=$(nmcli -t -f NAME,UUID,DEVICE,ACTIVE c show --active | grep ens | cut -d: -f2) && \
-  nmcli con modify "$UUID" ipv4.dns "<IP>" ipv4.ignore-auto-dns yes && \
-  nmcli con up "$UUID"'
+UUID=$(nmcli -t -f NAME,UUID,DEVICE,ACTIVE c show --active | grep ens | cut -d: -f2) && \
+nmcli con modify "$UUID" ipv4.dns "<IP>" ipv4.ignore-auto-dns yes && \
+nmcli con up "$UUID"'
 ```
+
+:::caution[]
+Whitespace before the first command results in an error. So `UUID=...` must not be indented.
+:::
