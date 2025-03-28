@@ -4,6 +4,12 @@ title: Random Adhoc Commands
 
 This is a collection of random adhoc commands that I have found useful.
 
+## Restart a service
+
+```bash
+ansible all -i ../terraform_ddp/inventory.yml -b -m service -a 'name=sshd state=restarted'
+```
+
 ## Change DNS Server
 
 This was used on a set of Almalinux servers to change the DNS server to a local DNS server, since the packer/terraform setup did not set the DNS server correctly on all nodes.
@@ -19,3 +25,21 @@ nmcli con up "$UUID"'
 :::caution[]
 Whitespace before the first command results in an error. So `UUID=...` must not be indented.
 :::
+
+## Validate root login via ssh
+
+```bash
+ansible all -i ../terraform_ddp/inventory.yml -b -m shell -a "\
+grep -E '^PermitRootLogin' /etc/ssh/sshd_config || echo 'PermitRootLogin not set'"
+```
+
+## Enable root login via ssh
+
+```bash
+ansible all -i ../terraform_ddp/inventory.yml -b -m lineinfile -a '
+path=/etc/ssh/sshd_config
+regexp="^PermitRootLogin"
+line="PermitRootLogin yes"
+create=yes
+'
+```
