@@ -1,0 +1,64 @@
+---
+title: Kerberos
+---
+
+## How to create a keytab with ktutil
+
+### Find out the details for the given principal
+
+```bash
+# on the KDC server
+kadmin.local
+getprinc someUser@SOME.DOMAIN
+```
+
+This should return something like this:
+
+```bash
+Principal: someUser@SOME.DOMAIN
+Expiration date: [never]
+Last password change: Wed Jan 08 15:36:12 UTC 2025
+Password expiration date: Tue Apr 08 15:36:12 UTC 2025
+Maximum ticket life: 1 day 00:00:00
+Maximum renewable life: 7 days 00:00:00
+Last modified: Wed Jan 08 15:36:12 UTC 2025 (root/admin@SOME.DOMAIN)
+Last successful authentication: [never]
+Last failed authentication: Tue Jan 21 08:00:44 UTC 2025
+Failed password attempts: 0
+Number of keys: 4
+Key: vno 1, aes256-cts-hmac-sha384-192:special
+Key: vno 1, aes128-cts-hmac-sha256-128:special
+Key: vno 1, aes256-cts-hmac-sha1-96:special
+Key: vno 1, aes128-cts-hmac-sha1-96:special
+MKey: vno 1
+Attributes: REQUIRES_PRE_AUTH DISALLOW_SVR
+Policy: [none]
+```
+
+### Create the keytab
+
+Now we can generate the keytab file using `ktutil`. The following example creates a keytab file with the same name as the principal.
+The keytab file will be created in the current working directory and will contain all encryptions for the principal.
+
+```bash
+# On the target machine
+ktutil
+addent -password -p someUser@SOME.DOMAIN -k 1 -e aes256-cts-hmac-sha384-192
+# enter password manually
+
+addent -password -p someUser@SOME.DOMAIN -k 1 -e aes128-cts-hmac-sha256-128
+# enter password manually
+
+addent -password -p someUser@SOME.DOMAIN -k 1 -e aes256-cts-hmac-sha1-96
+# enter password manually
+
+addent -password -p someUser@SOME.DOMAIN -k 1 -e aes128-cts-hmac-sha1-96
+# enter password manually
+wkt someUser.keytab
+quit
+```
+
+## References
+
+[Hadoop and Kerberos - The Madness Beyond the Gate](https://steveloughran.gitbooks.io/kerberos_and_hadoop/content/sections/what_is_kerberos.html)
+[Kerberos - ELI5](https://www.roguelynn.com/words/explain-like-im-5-kerberos/)
