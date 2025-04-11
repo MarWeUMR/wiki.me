@@ -1,0 +1,21 @@
+---
+title: Kafka
+---
+
+## How to find the Security Settings for Kafka
+
+```bash
+cat /run/cloudera-scm-agent/process/*kafka-KAFKA_BROKER/proc.json | grep -i kafka_broker
+```
+
+## How to find the JAAS Settings for Kafka
+
+```bash
+cat /run/cloudera-scm-agent/process/*kafka-KAFKA_BROKER/jaas.conf
+```
+
+## How to find the Kafka Configuration
+
+```bash
+cat /run/cloudera-scm-agent/process/*kafka-KAFKA_BROKER/kafka.properties
+```
