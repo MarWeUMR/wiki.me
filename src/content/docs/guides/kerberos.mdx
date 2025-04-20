@@ -58,6 +58,20 @@ wkt someUser.keytab
 quit
 ```
 
+## How to create a keytab with kadmin.local
+
+```bash
+kadmin.local -q 'ktadd -k <KEYTAB_PATH> -norandkey <USER>@<REALM>'
+```
+
+## How to use a cache file for authentication
+
+```bash
+KRB5CCNAME=<CACHE_PATH> kinit -kt <KEYTAB_PATH> <USER>@<REALM>
+# alternatively
+kinit -kt -c <CACHE_PATH> <KEYTAB_PATH> <USER>@<REALM>
+```
+
 ## References
 
 [Hadoop and Kerberos - The Madness Beyond the Gate](https://steveloughran.gitbooks.io/kerberos_and_hadoop/content/sections/what_is_kerberos.html)
