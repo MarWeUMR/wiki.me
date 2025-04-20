@@ -2,6 +2,21 @@
 title: PostgreSQL
 ---
 
+## How to run `psql` with optimized pager settings
+
+This allows e.g. horizontal scrolling in `less` and syntax highlighting in `bat`.
+
+```bash
+PSQL_PAGER=<MY_PAGER> psql -h localhost ...
+```
+
+A few examples:
+
+```bash
+PSQL_PAGER='less -SXFRi' psql -h localhost ...
+PSQL_PAGER='bat --wrap=never' psql -h localhost ...
+```
+
 ## How to describe a PostgreSQL table
 
 ```sql
