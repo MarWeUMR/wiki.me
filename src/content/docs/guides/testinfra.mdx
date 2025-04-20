@@ -1,0 +1,42 @@
+---
+title: Testinfra
+---
+
+## How to run a fixture for a specific host using ansible backend
+
+This example demonstrates how to set up a `Testinfra` fixture that connects to a specific host using the Ansible backend.
+The fixture here is designed to connect to a Kerberos Key Distribution Center (KDC) host.
+Using this approach, you can run tests against a specific host without needing to specify the host in each test via the `--hosts=...` flag.
+
+```python
+# conftest.py
+
+import pytest
+import testinfra
+import os
+
+# --- Configuration ---
+INVENTORY = os.getenv("ANSIBLE_INVENTORY")
+SSH_CONFIG = os.getenv("SSH_CONFIG")
+KDC_HOSTNAME = "kdc-host.mydomain.xyz"
+
+# Here we define the connection string to make Testinfra aware of the KDC host
+KDC_HOST_STRING = (
+    f"ansible://{KDC_HOSTNAME}?ansible_inventory={INVENTORY}&ssh_config={SSH_CONFIG}"
+)
+
+
+@pytest.fixture(scope="session")
+def kdc_host():
+    """
+    Provides a session-scoped Testinfra host connection to the KDC.
+    Connects only once for the entire test session.
+    """
+    print(f"\n[Session Setup] Connecting to KDC host: {KDC_HOSTNAME}")
+    host = testinfra.get_host(KDC_HOST_STRING)
+    # Optional: Add a check here to ensure the KDC is reachable early on.
+    result = host.run("hostname")  # Example check
+    if not result.succeeded:
+        pytest.fail(f"Failed to connect to KDC host {KDC_HOSTNAME}: {result.stderr}")
+    return host
+```
