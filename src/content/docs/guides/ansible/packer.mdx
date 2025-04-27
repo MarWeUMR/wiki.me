@@ -1,0 +1,23 @@
+---
+title: Using ansible as a packer provisioner
+---
+
+
+## Ansible Galaxy workaround
+
+The packer provisioner provides a bit of unconvenience when it comes to handling the `ansible-galaxy` command.
+There are options you can use like `galaxy_command`, `galaxy_force_with_deps` and `galaxy_file`, but there seems to be no option to disable dependencies.
+This can lead to trouble when a collection is pinned to an old version of some other collection you want to use with a newer release.
+
+This is how `packer` executes the `ansible-galaxy` command:
+
+```bash
+<GALAXY_COMMAND> collection install -r <GALAXY_FILE>
+```
+You can't add options to the `galaxy_command`, because `packer` adds the **collection install -r** part and therefore adding flags to the `galaxy_command` results in an error.
+To work around that you can use a custom script as the `galaxy_command`, or remove the `galaxy_xyz` stuff and just run a full command on the `galaxy_command` option.
+For example you could do:
+
+```hcl
+galaxy_command = "ansible-galaxy install -r ${path.cwd}/ansible/my-requirements.yml --no-deps"
+```
