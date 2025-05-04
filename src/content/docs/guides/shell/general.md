@@ -5,6 +5,15 @@ description: Tips and tricks for using the shell
 
 # Shell Tips
 
+## Grepping config files without showing comments and whitespace
+
+This command strips away the noisy parts of config files.
+Sometimes you may just want to know the actually non-default values and that information is hard to find when 90% of the file is comments.
+
+```bash
+cat <FILE> | egrep -v "^\s*(#|$)"
+```
+
 ## Container/VM Shells with weird cursor behavior
 
 Ever had the situation where you are in a container or VM and the cursor is not behaving as expected?
