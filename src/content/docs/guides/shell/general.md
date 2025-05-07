@@ -19,7 +19,7 @@ cat <FILE> | egrep -v "^\s*(#|$)"
 Ever had the situation where you are in a container or VM and the cursor is not behaving as expected?
 For instance, deleting a character with backspace results in the cursor moving to the right.
 
-So solve this, set the `TERM` environment variable to `xterm`:
+To solve this, set the `TERM` environment variable to `xterm`:
 
 ```bash
 export TERM=xterm
