@@ -5,6 +5,6 @@ title: Helpful kubernetes commands
 ## How to get the CPU and memory requests of a pod
 
 ```bash
-kubectl get pod web-67d4dfbbff-4s9sq -n asdf \
+kubectl get pod <POD> -n <NAMESPACE> \
   -o=jsonpath='{range .spec.containers[*]}{.name}{"→ req="}{.resources.requests.cpu}{" mem="}{.resources.requests.memory}{"\n"}{end}'
 ```
