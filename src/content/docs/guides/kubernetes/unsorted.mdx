@@ -8,3 +8,27 @@ title: Helpful kubernetes commands
 kubectl get pod <POD> -n <NAMESPACE> \
   -o=jsonpath='{range .spec.containers[*]}{.name}{"→ req="}{.resources.requests.cpu}{" mem="}{.resources.requests.memory}{"\n"}{end}'
 ```
+
+## How to debug a pod in a crashloopbackoff state
+
+If a pod is in a `CrashLoopBackOff` state, you can patch it to run a different command, such as `sleep infinity`, to keep it running for debugging purposes.
+
+### How to generate json output for a patch with yq
+
+```bash
+yq -o=json <<EOF > patch.json
+spec:
+  template:
+    spec:
+      containers:
+        - name: metastore
+          command: ["sleep", "infinity"]
+EOF
+```
+
+### How to patch a deployment/statefulset with a json file
+
+```bash
+kubectl patch deployment <DEPLOYMENT> -n <NAMESPACE> --patch "$(cat patch.json)"
+kubectl patch sts <STATEFULSET> -n <NAMESPACE> --patch "$(cat patch.json)"
+```
