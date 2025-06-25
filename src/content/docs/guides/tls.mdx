@@ -1,0 +1,27 @@
+---
+title: TLS
+---
+
+## How to inspect a certificate chain using OpenSSL
+
+```bash
+openssl s_client -showcerts -partial_chain -connect $ENDPOINT:443 < /dev/null | less
+```
+
+## How to extract all certificates from a certificate chain
+
+```bash
+openssl s_client -showcerts -verify 5 -connect $ENDPOINT:443 < /dev/null |
+   awk '/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out="cert"a".pem"; print >out}'
+for cert in *.pem; do
+        newname=$(openssl x509 -noout -subject -in $cert | sed -nE 's/.*CN ?= ?(.*)/\1/; s/[ ,.*]/_/g; s/__/_/g; s/_-_/-/; s/^_//g;p' | tr '[:upper:]' '[:lower:]').pem
+        echo "${newname}"; mv "${cert}" "${newname}"
+done
+```
+
+### Explanation
+
+- `openssl s_client -showcerts -verify 5 -connect $ENDPOINT:443 < /dev/null`: Connects to the specified endpoint and retrieves the certificate chain.
+- `< /dev/null`: `s_client` opens a connection and waits for input, which we provide as an empty input to avoid hanging and exit immediately.
+- `awk '/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out="cert"a".pem"; print >out}'`: This command processes the output of `s_client`, extracting each certificate and saving it to a separate file named `cert1.pem`, `cert2.pem`, etc.
+- `for cert in *.pem; do ... done`: This loop iterates over each extracted certificate file and renames it based on its subject.
