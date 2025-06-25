@@ -32,3 +32,9 @@ EOF
 kubectl patch deployment <DEPLOYMENT> -n <NAMESPACE> --patch "$(cat patch.json)"
 kubectl patch sts <STATEFULSET> -n <NAMESPACE> --patch "$(cat patch.json)"
 ```
+
+## How to debug network issues in the cluster with netshoot
+
+```bash
+kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot
+```
