@@ -1,0 +1,11 @@
+---
+title: Jenkins Cheatsheet
+---
+
+## How to trigger a jenkins job via cli and remote trigger endpoint.
+
+```bash
+curl -X POST \
+  "$JENKINS_URL/job/playground/job/jenkins-test/buildWithParameters?token=<PIPELINE_TOKEN>&<PIPELINE_PARAMS>=<PIPELINE_PARAMS_VALUES>" \
+  --user "<USERNAME>:<MY_API_TOKEN>"
+```
