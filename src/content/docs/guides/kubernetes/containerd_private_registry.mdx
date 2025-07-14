@@ -1,0 +1,105 @@
+---
+title: Using a Private Container Registry with Containerd in a KinD Cluster and Harbor Proxy Cache
+---
+
+## Problem Statement
+
+Pull any image that spells `docker.io/...` through a Harbor proxy-cache with auth & TLS handled entirely inside every KIND node.
+
+## Solution
+
+### Containerd Configuration
+
+```bash
+sudo mkdir -p /etc/containerd/certs.d/docker.io
+sudo tee    /etc/containerd/certs.d/docker.io/hosts.toml >/dev/null <<'EOF'
+# --- docker.io mirror rule ----------------------------------------------
+server = "https://registry-1.docker.io" # <- MUST match containerd's canonical Hub host
+
+[host."https://<MY_HARBOR_URL>/v2/dockerhub_proxy"]  # <- Harbor project name
+  capabilities = ["pull", "resolve"]
+  override_path = true        # keep the “/v2/<project>” path component Harbor expects
+  skip_verify   = true        # or `ca = "/etc/containerd/certs.d/<MY_HARBOR_URL>/ca.crt"`
+EOF
+```
+
+### Kind Cluster Configuration
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+  apiServerAddress: 0.0.0.0
+  apiServerPort: 45451
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.32.2
+    labels:
+      mission-control.datastax.com/role: platform
+    extraPortMappings:
+      - containerPort: 30880
+        hostPort: 30880
+        listenAddress: "0.0.0.0"
+        protocol: tcp
+      - containerPort: 30081
+        hostPort: 30081
+        listenAddress: "0.0.0.0"
+        protocol: tcp
+      - containerPort: 30001
+        hostPort: 30001
+        listenAddress: "0.0.0.0"
+        protocol: tcp
+    extraMounts: &xtrMnt
+      - hostPath: /etc/containerd/certs.d/docker.io
+        containerPath: /etc/containerd/certs.d/docker.io
+      - hostPath: /root/.docker/config.json
+        containerPath: /var/lib/kubelet/config.json
+
+  - role: worker
+    image: kindest/node:v1.32.2
+    labels:
+      mission-control.datastax.com/role: platform
+    extraMounts: *xtrMnt
+
+  - role: worker
+    image: kindest/node:v1.32.2
+    labels:
+      mission-control.datastax.com/role: platform
+    extraMounts: *xtrMnt
+
+  - role: worker
+    image: kindest/node:v1.32.2
+    labels:
+      mission-control.datastax.com/role: platform
+    extraMounts: *xtrMnt
+
+containerdConfigPatches:
+  - |-
+    version = 2
+
+    [plugins."io.containerd.grpc.v1.cri".registry]
+       config_path = "/etc/containerd/certs.d"
+```
+
+### Authentication
+
+To authenticate with the Harbor proxy cache, you need to create a Docker config file that contains your Harbor credentials.
+This file should be mounted into the Kind nodes as specified in the `extraMounts` section of the Kind cluster configuration.
+This file should be created by using `docker login` command or manually as shown below:
+
+```bash
+mkdir -p /root/.docker
+cat <<EOF >/root/.docker/config.json
+{
+  "auths": {
+    "<MY_HARBOR_URL>": {
+      "auth": "<BASE64_ENCODED_CREDENTIALS>"
+    }
+  }
+}
+EOF
+```
+
+## References
+
+- <https://github.com/goharbor/harbor/issues/18530>
