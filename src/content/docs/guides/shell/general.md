@@ -1,5 +1,5 @@
 ---
-title: Unsoreted Shell Tips
+title: Unsorted Shell Tips
 description: Tips and tricks for using the shell
 ---
 
