@@ -9,3 +9,11 @@ curl -X POST \
   "$JENKINS_URL/job/playground/job/jenkins-test/buildWithParameters?token=<PIPELINE_TOKEN>&<PIPELINE_PARAMS>=<PIPELINE_PARAMS_VALUES>" \
   --user "<USERNAME>:<MY_API_TOKEN>"
 ```
+
+## How to get information about the jobs definitions
+
+This is helpful if you need e.g. detailed information about the defined parameters of a job.
+
+```bash
+curl https://<JENKINS_URL>/jenkins/job/<JOB_URL_PART>/api/json?pretty=true
+```
