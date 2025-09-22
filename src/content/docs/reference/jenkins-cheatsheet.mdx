@@ -10,6 +10,66 @@ curl -X POST \
   --user "<USERNAME>:<MY_API_TOKEN>"
 ```
 
+### Alternative with crumbs and cookie
+
+```bash
+# --- Config ---
+JOB_PATH="<JOB_PATH>"
+
+# Pipeline parameters
+PARAM_ONE="one"
+PARAM_TWO="two"
+
+# --- Setup ---
+COOKIE_JAR="$(mktemp)"
+AUTH_HEADER=$(printf "%s:%s" "$JENKINS_USER" "$JENKINS_TOKEN" | base64 | tr -d '\n')
+
+# --- Fetch crumb ---
+CRUMB_JSON=$(
+  curl -sS -c "$COOKIE_JAR" \
+    -H "Authorization: Basic $AUTH_HEADER" \
+    "$JENKINS_URL/crumbIssuer/api/json"
+)
+CRUMB_FIELD=$(jq -r '.crumbRequestField' <<<"$CRUMB_JSON")
+CRUMB_VALUE=$(jq -r '.crumb' <<<"$CRUMB_JSON")
+
+echo "✓ Got crumb: $CRUMB_FIELD=$CRUMB_VALUE"
+echo "✓ Cookies saved in $COOKIE_JAR"
+
+# --- Variant A: JSON payload to /build ---
+BUILD_URL="$JENKINS_URL/job/<JOB_PATH>/build"
+JSON_PAYLOAD=$(jq -n \
+  --arg p1 "$PARAM_ONE" \
+  --arg p2 "$PARAM_TWO" \
+  '{parameter:[{name:"ONE",value:$p1},{name:"TWO",value:$p2}]}'
+)
+
+echo "→ Triggering build via JSON payload..."
+curl -sS -o /dev/null -w "%{http_code}\n" \
+  -b "$COOKIE_JAR" \
+  -H "Authorization: Basic $AUTH_HEADER" \
+  -H "$CRUMB_FIELD: $CRUMB_VALUE" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "json=$JSON_PAYLOAD" \
+  "$BUILD_URL"
+
+# --- Variant B: Simple form to /buildWithParameters ---
+BUILD_WITH_PARAMS_URL="$JENKINS_URL/job/<JOB_PATH>/buildWithParameters"
+
+echo "→ Triggering build via form parameters..."
+curl -sS -o /dev/null -w "%{http_code}\n" \
+  -b "$COOKIE_JAR" \
+  -H "Authorization: Basic $AUTH_HEADER" \
+  -H "$CRUMB_FIELD: $CRUMB_VALUE" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  --data-urlencode "ONE=$PARAM_ONE" \
+  --data-urlencode "TWO=$PARAM_TWO" \
+  "$BUILD_WITH_PARAMS_URL"
+
+echo "✓ Done."
+
+```
+
 ## How to get information about the jobs definitions
 
 This is helpful if you need e.g. detailed information about the defined parameters of a job.
