@@ -111,6 +111,8 @@ pipeline {
     }
     stages {
         stage('Method 1: Stage-Level Environment Block') {
+        agent { node { label 'master' } }
+
             /*
              * STAGE-LEVEL CREDENTIAL BINDING:
              * 
@@ -122,9 +124,6 @@ pipeline {
              */
             environment {
                 CREDS = credentials('MY_SECRET_ID')  // References the parameter name directly
-            }
-            agent {
-                any
             }
             steps {
                 echo "=== DEMONSTRATING STAGE-LEVEL CREDENTIAL BINDING ==="
@@ -140,9 +139,7 @@ pipeline {
             }
         }
         stage('Method 2: withCredentials Block') {
-            agent {
-                any
-            }
+            agent { node { label 'master' } }
             steps {
                 echo "=== DEMONSTRATING withCredentials BLOCK ==="
                 echo "This method provides more control"
