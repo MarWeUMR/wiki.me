@@ -86,59 +86,97 @@ This pipeline script is an example on how to inject secrets that are stored in t
 pipeline {
     agent none
     options {
+        // Keep build history manageable for educational purposes
         buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '2'))
     }
     parameters {
-        // Define the Credential ID here for usage down below
+        /*
+         * CREDENTIALS PARAMETER EXPLANATION:
+         * 
+         * This creates a dropdown in Jenkins UI showing available Username/Password credentials
+         * from the user's credential store (personal), folder-level, or global Jenkins credentials.
+         * 
+         * Key points:
+         * - Users can select from their own credential store
+         * - The parameter name 'MY_SECRET_ID' becomes the credential ID to reference
+         * - Works in Multibranch pipelines when triggered via UI or API
+         * - Required: `true` means the build will fail if no credential is selected
+         */
         credentials(
             name: 'MY_SECRET_ID',
-            description: '',
+            description: 'Select a Username/Password credential from your user store, folder, or global credentials',
             credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl',
             required: true
         )
     }
-
-    environment {
-        // Define a set of environment variables for the pipeline here
-        // note that these are handled securely
-        CREDS = credentials('MY_SECRET_ID')
-    }
-
     stages {
-        stage('Credentials - Via environment') {
+        stage('Method 1: Stage-Level Environment Block') {
+            /*
+             * STAGE-LEVEL CREDENTIAL BINDING:
+             * 
+             * Using 'environment' block at stage level automatically:
+             * - Binds the selected credential for this stage only
+             * - Creates two variables: CREDS_USR (username) and CREDS_PSW (password)
+             * - Password is automatically masked in Jenkins console logs (shows as ****)
+             * - Scope is limited to this specific stage
+             */
+            environment {
+                CREDS = credentials('MY_SECRET_ID')  // References the parameter name directly
+            }
             agent {
-                node {
-                    label 'master'
-                }
+                any
             }
             steps {
-                sh """
-                    echo "Show the output of multiple different ways to interpolate strings"
-                    
-                    // a single quote should be used for interpolation
-                    // see for details: https://docs.cloudbees.com/docs/cloudbees-ci/latest/automating-with-jenkinsfile/string-interpolation
-                    echo '${CREDS_USR}'
-                    echo '${CREDS_PSW}' // should not be visible, should show **** instead
-                """
+                echo "=== DEMONSTRATING STAGE-LEVEL CREDENTIAL BINDING ==="
+                echo "This method uses Declarative Pipeline's environment block"
+                echo "Variables created automatically: CREDS_USR and CREDS_PSW"
+                echo ""
+                sh '''
+                    echo "  Credential Information:"
+                    echo "  Username: $CREDS_USR"
+                    echo "  Password: $CREDS_PSW"  # This will appear as **** in logs (SECURE)
+                    echo ""
+                '''
             }
         }
-        stage('withCredentials - Block') {
+        stage('Method 2: withCredentials Block') {
             agent {
-                node {
-                    label 'master'
-                }
+                any
             }
             steps {
-                // alternative usage, note that this wont work with multibranch piplines and user credential provider!
-                withCredentials([usernamePassword(credentialsId: params.MY_SECRET_ID, passwordVariable: 'PWORD', usernameVariable: 'USR')]) {
-                    sh """
-                        echo '${USR}'
-                        echo '${PWORD}'
-                        """
+                echo "=== DEMONSTRATING withCredentials BLOCK ==="
+                echo "This method provides more control"
+                echo ""
+                script {
+                    /*
+                     * withCredentials BLOCK EXPLANATION:
+                     * 
+                     * This is the more flexible and recommended approach:
+                     * - Explicitly defines variable names (USERNAME_VAR for username, PASSWORD_VAR for password)
+                     * - Can be used within script blocks for complex logic
+                     * - Credentials are automatically masked in logs
+                     * - Scope is limited to the withCredentials block only
+                     * - Works with both Declarative and Scripted pipelines
+                     * 
+                     * IMPORTANT: This wont work with the user scoped credentials in Multibranch pipelines
+                     */
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: 'MY_SECRET_ID', // Parameter name from above
+                            usernameVariable: 'USERNAME_VAR', // Custom username variable name
+                            passwordVariable: 'PASSWORD_VAR'           // Custom password variable name
+                        )
+                    ]) {
+                        sh '''
+                            echo "  Credential Information (Custom Variables):"
+                            echo "  Custom Username Variable: $USERNAME_VAR"
+                            echo "  Custom Password Variable: $PASSWORD_VAR"  # Masked as ****
+                            echo ""
+                        '''
+                    }
                 }
             }
         }
     }
 }
-
 ```
