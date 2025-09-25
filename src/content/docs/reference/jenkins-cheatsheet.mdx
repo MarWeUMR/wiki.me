@@ -77,3 +77,68 @@ This is helpful if you need e.g. detailed information about the defined paramete
 ```bash
 curl https://<JENKINS_URL>/jenkins/job/<JOB_URL_PART>/api/json?pretty=true
 ```
+
+## How to handle secrets in strings securely
+
+This pipeline script is an example on how to inject secrets that are stored in the user credentials provider.
+
+```groovy
+pipeline {
+    agent none
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', daysToKeepStr: '2'))
+    }
+    parameters {
+        // Define the Credential ID here for usage down below
+        credentials(
+            name: 'MY_SECRET_ID',
+            description: '',
+            credentialType: 'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl',
+            required: true
+        )
+    }
+
+    environment {
+        // Define a set of environment variables for the pipeline here
+        // note that these are handled securely
+        CREDS = credentials('MY_SECRET_ID')
+    }
+
+    stages {
+        stage('Credentials - Via environment') {
+            agent {
+                node {
+                    label 'master'
+                }
+            }
+            steps {
+                sh """
+                    echo "Show the output of multiple different ways to interpolate strings"
+                    
+                    // a single quote should be used for interpolation
+                    // see for details: https://docs.cloudbees.com/docs/cloudbees-ci/latest/automating-with-jenkinsfile/string-interpolation
+                    echo '${CREDS_USR}'
+                    echo '${CREDS_PSW}' // should not be visible, should show **** instead
+                """
+            }
+        }
+        stage('withCredentials - Block') {
+            agent {
+                node {
+                    label 'master'
+                }
+            }
+            steps {
+                // alternative usage, note that this wont work with multibranch piplines and user credential provider!
+                withCredentials([usernamePassword(credentialsId: params.MY_SECRET_ID, passwordVariable: 'PWORD', usernameVariable: 'USR')]) {
+                    sh """
+                        echo '${USR}'
+                        echo '${PWORD}'
+                        """
+                }
+            }
+        }
+    }
+}
+
+```
