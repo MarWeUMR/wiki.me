@@ -38,3 +38,10 @@ kubectl patch sts <STATEFULSET> -n <NAMESPACE> --patch "$(cat patch.json)"
 ```bash
 kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot
 ```
+## How to emit logs from an app inside the pod
+
+Given an app (e.g. Jupyter) in a pod, this is how you can send logs to the outside world such that they can be picked up by e.g. filebeat:
+
+```bash
+echo "Hello World" >> /proc/1/fd/1
+```
