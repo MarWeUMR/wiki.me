@@ -1,0 +1,19 @@
+---
+title: Using uv
+---
+
+## How to be more secure with uv
+
+Using `uv`, you can exclude packages that were updated after a certain date when adding dependencies from a requirements file.
+This is useful for maintaining stability in your project by avoiding newer versions that may introduce breaking changes or vulnerabilities.
+
+```bash
+uv add -r requirements.txt --exclude-newer 2025-01-15
+```
+
+To make this behavior a bit more focused on avoiding issues with recent updates, you can set an environment variable to exclude packages updated within the last two weeks.
+
+```bash
+export UV_EXCLUDE_NEWER=$(date -Iu -d "14 days ago")
+uv add -r requirements.txt
+```
