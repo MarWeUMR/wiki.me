@@ -1,0 +1,8 @@
+packages:
+  - .
+
+# Only install versions that are at least 14 days old
+minimumReleaseAge: 20160
+
+# prevent trust regressions
+trustPolicy: no-downgrade
