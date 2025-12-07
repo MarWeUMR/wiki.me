@@ -13,9 +13,13 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "All the Things I SHOULD Know",
-      social: {
-        github: "https://github.com/withastro/starlight",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/withastro/starlight",
+        },
+      ],
       sidebar: [
         {
           label: "Guides",
