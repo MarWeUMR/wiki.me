@@ -22,12 +22,10 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v4
-      #   with:
-      #     version: 10
-      # - name: Install sharp
-      #   run: pnpm add sharp
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install sharp
         run: pnpm add sharp
 
