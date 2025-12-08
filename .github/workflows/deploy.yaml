@@ -28,6 +28,9 @@ jobs:
       #     version: 10
       # - name: Install sharp
       #   run: pnpm add sharp
+      - name: Install sharp
+        run: pnpm add sharp
+
       - name: Install, build, and upload your site
         uses: withastro/action@v5
         with:
