@@ -15,5 +15,10 @@
   },
   "devDependencies": {
     "sharp": "^0.32.6"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
   }
 }
