@@ -1,0 +1,40 @@
+---
+title: pip-compile
+---
+
+## How to generate a hash lockfile from pyproject.toml
+
+If you need to generate a pip compatible hashfile, that can be installed using `pip install --require-hashes -r requirements.lock`, you can generate it from pyproject.toml like this:
+
+```
+pip-compile --generate-hashes --output-file requirements-dev.lock --extra dev pyproject.toml
+```
+
+And the pyproject.toml file would like roughly like this:
+
+```toml
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+
+name = "..."
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+  "pyyaml>=6.0",
+  "pydantic-settings==2.10.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black[jupyter]==25.1.0",
+  "pytest==8.3.5",
+  "pytest-cov==6.1.1",
+  "pytest-html==4.1.1",
+  "ruff==0.11.10",
+]
+```
