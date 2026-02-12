@@ -37,6 +37,24 @@ Sometimes you may just want to know the actually non-default values and that inf
 cat <FILE> | egrep -v "^\s*(#|$)"
 ```
 
+## Grepping shell output in debug mode
+
+You may have a script in debug mode (set -x) and want to clear the content of all the lines with `+` or `++` in the beginning.
+Use this to make it more readable:
+
+```
+cat <<EOF | grep -vE '^\+{1,2} '
+Hard rule:
+echo 'do something'
++ [[ true == true ]]
++ keytab_path=/opt/demo-assets/kerberos/spark-job.keytab
++ [[ -n /opt/demo-assets/kerberos/spark-job.keytab ]]
+++ dirname /tmp/spark-job.keytab
++ mkdir -p /tmp
++ rm -f /tmp/spark-job.keytab
++ echo 'Preparing readable copy'
+```
+
 ## Container/VM Shells with weird cursor behavior
 
 Ever had the situation where you are in a container or VM and the cursor is not behaving as expected?
