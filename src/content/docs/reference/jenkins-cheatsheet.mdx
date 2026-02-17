@@ -177,3 +177,18 @@ pipeline {
     }
 }
 ```
+
+## How to run all multibranch pipelines in a given folder
+
+Using this in the script console of Jenkins will trigger all pipelines in that given folder.
+
+```groovy
+import org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
+import hudson.model.Cause.UserIdCause
+
+Jenkins.instance.getAllItems(WorkflowMultiBranchProject.class).findAll {
+    return it.fullName =~ '^folder/subfolder/'
+}.each {
+    it.scheduleBuild(0, new UserIdCause())
+}
+```
