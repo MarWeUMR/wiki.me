@@ -183,12 +183,33 @@ pipeline {
 Using this in the script console of Jenkins will trigger all pipelines in that given folder.
 
 ```groovy
+import jenkins.model.Jenkins
 import org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
-import hudson.model.Cause.UserIdCause
+import org.jenkinsci.plugins.workflow.job.WorkflowJob
+import hudson.model.Cause
+import hudson.model.CauseAction
 
-Jenkins.instance.getAllItems(WorkflowMultiBranchProject.class).findAll {
-    return it.fullName =~ '^folder/subfolder/'
-}.each {
-    it.scheduleBuild(0, new UserIdCause())
-}
+def prefix   = 'folder/subfolder/'
+def branches = ['main', 'master']
+
+Jenkins.instance
+  .getAllItems(WorkflowMultiBranchProject.class)
+  .findAll { it.fullName.startsWith(prefix) }
+  .each { mbp ->
+    def enqueuedAny = false
+
+    branches.each { b ->
+      def job = mbp.getItem(b)   // branch job inside the multibranch project
+      if (job instanceof WorkflowJob) {
+        def item = job.scheduleBuild2(0, new CauseAction(new Cause.UserIdCause()))
+        println "${mbp.fullName}/${b}: " + (item ? "ENQUEUED" : "NOT ENQUEUED")
+        if (item) enqueuedAny = true
+      }
+    }
+
+    if (!enqueuedAny) {
+      println "${mbp.fullName}: neither 'main' nor 'master' branch job found"
+    }
+  }
+
 ```
