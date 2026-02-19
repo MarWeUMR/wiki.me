@@ -180,7 +180,7 @@ pipeline {
 
 ## How to run all multibranch pipelines in a given folder
 
-Using this in the script console of Jenkins will trigger all pipelines in that given folder.
+Using this in the `script console` of Jenkins will trigger all pipelines in that given folder.
 
 ```groovy
 import jenkins.model.Jenkins
@@ -212,4 +212,18 @@ Jenkins.instance
     }
   }
 
+```
+
+## How to force stop a job 
+
+Imagine a job where accidently a recursion was introduced and the UI cant stop the job anymore.
+Use this in the `script console` to eventually stop it:
+
+```groovy
+Jenkins.instance.getAllItems(hudson.model.Job).each { job ->
+    job.builds.findAll { it.isBuilding() }.each { build ->
+        println("Stopping: ${job.fullName} #${build.number}")
+        build.doStop()
+    }
+}
 ```
