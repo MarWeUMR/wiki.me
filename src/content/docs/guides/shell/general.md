@@ -97,3 +97,11 @@ bash -xv script.sh
 The above can be a lot of help when debugging shell scripts.
 For example, you can see the exact command that is being executed and the output of each command.
 You can also see the values of variables and how they are being expanded.
+
+## Find big directories
+
+This command can help to quickly identify big directories:
+
+```bash
+du -xhd 2 <PATH> 2>/dev/null | sort -hr
+```
