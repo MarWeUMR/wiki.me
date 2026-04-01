@@ -1,0 +1,17 @@
+---
+title: Snippets
+---
+
+## Environment Debugging
+
+This snippet can be used to troubleshoot problems with e.g. packages that can't be found.
+
+```
+python - <<'PY'
+import sys, os
+print("PYTHONPATH =", os.environ.get("PYTHONPATH"))
+print("sys.path:")
+for p in sys.path:
+    print(" ", p)
+PY
+```
