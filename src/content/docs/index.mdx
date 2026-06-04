@@ -1,36 +1,52 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: External Brain
+description: Quick entry points into the notes, guides, and references I look up repeatedly.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: A personal knowledge base for commands, patterns, troubleshooting notes, and references worth finding fast.
   actions:
-    - text: Go to Content
-      link: /wiki.me/guides/ansible/include_vs_import/
+    - text: Start with Bash & Shell
+      link: ./guides/bash/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Browse CLI Cheatsheets
+      link: ./reference/cli-cheatsheets/
+      icon: open-book
       variant: minimal
 ---
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
 
-## Quick Navigation
+## Quick Access
 
 <CardGrid stagger>
-  <Card title="Neovim" icon="pencil">
-    Edit `src/content/docs/index.mdx` to see this page change.
+  <Card title="Bash & Shell" icon="terminal">
+    Shell patterns, here-documents, debugging snippets, and commands I reuse often.
+
+    [Open Bash & Shell](./guides/bash/)
   </Card>
-  <Card title="Scripting" icon="add-document">
-    Add Markdown or MDX files to `src/content/docs` to create new pages.
+  <Card title="CLI Cheatsheets" icon="open-book">
+    Visual references for Linux permissions, `ip`, shell startup, and observability tools.
+
+    [Open CLI Cheatsheets](./reference/cli-cheatsheets/)
   </Card>
-  <Card title="Git Stuff" icon="setting">
-    Here is the link to the git guide [Git Guide](/wiki.me/guides/git/intro)
+  <Card title="Git" icon="seti:git">
+    Git workflows, ignored files, worktrees, and commit-history fixes.
+
+    [Open Git Guide](./guides/git/intro/)
   </Card>
-  <Card title="Read the docs" icon="open-book">
-    Learn more in [the Starlight Docs](https://starlight.astro.build/).
+  <Card title="Python" icon="seti:python">
+    Python environment, packaging, `uv`, `pip-compile`, and useful snippets.
+
+    [Open Python Notes](./guides/python/uv/)
+  </Card>
+  <Card title="Kubernetes" icon="seti:kubernetes">
+    Kubernetes notes and operational snippets, including private registry setup.
+
+    [Open Kubernetes Notes](./guides/kubernetes/unsorted/)
+  </Card>
+  <Card title="Ansible" icon="setting">
+    Ansible reference material, include/import behavior, ad-hoc commands, Packer, and Molecule.
+
+    [Open Ansible Notes](./guides/ansible/include_vs_import/)
   </Card>
 </CardGrid>

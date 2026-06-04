@@ -1,10 +1,66 @@
 ---
 title: Bash & Shell
+description: Bash and shell patterns worth keeping close at hand.
 ---
+
+import { Image } from "astro:assets";
+import heredocQuotedDelimiter from "../../../assets/shell/heredoc_quoted_delimiter.png";
+import heredocExpansionMode from "../../../assets/shell/heredoc_expansion_mode.png";
 
 ## Bash Variables
 
 ### References
 
-- https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html
-- https://blog.alex.balgavy.eu/editing-efficiency-in-the-terminal-learning-readline-bindings/
+- [Bash shell parameter substitution](https://www.cyberciti.biz/tips/bash-shell-parameter-substitution-2.html)
+- [Readline bindings](https://blog.alex.balgavy.eu/editing-efficiency-in-the-terminal-learning-readline-bindings/)
+
+## Here-documents
+
+Use a here-document when you want to feed a multi-line block into a command or write it into a file.
+This is especially useful for generating small scripts, config files, SQL snippets, or test fixtures from shell scripts.
+
+### Literal mode: quoted delimiter
+
+Quote the delimiter when the content should be written exactly as typed.
+Variables, command substitutions, and other shell expansions stay untouched.
+
+```bash
+cat > python_file_with_code.py <<'PY'
+def greet(name):
+    print(f"Hello, {name}!")
+
+for i in range(3):
+    print(i)
+
+# Have a nice day! 🙂
+PY
+```
+
+<Image
+  src={heredocQuotedDelimiter}
+  alt="Illustration of a quoted Bash heredoc delimiter, where content between the PY markers is written literally to a destination file."
+/>
+
+### Expansion mode: unquoted delimiter
+
+Leave the delimiter unquoted when you intentionally want the shell to expand variables and command substitutions before writing the content.
+
+```bash
+NAME=Marcus
+
+cat > python_file_with_code.py <<PY
+Hello $NAME
+Today is $(date +%A)
+PY
+```
+
+<Image
+  src={heredocExpansionMode}
+  alt="Illustration of an unquoted Bash heredoc delimiter, where shell variables and command substitutions are expanded before writing to a destination file."
+/>
+
+### Rule of thumb
+
+- Use `<<'EOF'` or `<<'PY'` for templates, scripts, YAML, Python, SQL, and anything that should remain literal.
+- Use `<<EOF` or `<<PY` only when you deliberately want shell expansion.
+- Pick a delimiter that describes the content, for example `PY`, `SQL`, `YAML`, or `SYSTEMD`.
